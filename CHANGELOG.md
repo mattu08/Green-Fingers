@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.1-beta](https://github.com/mattu08/Green-Fingers/tree/v1.1-beta) (2016-01-29)
+[Full Changelog](https://github.com/mattu08/Green-Fingers/compare/v1.0-beta...v1.1-beta)
+
 ## [v1.0-beta](https://github.com/mattu08/Green-Fingers/tree/v1.0-beta) (2016-01-28)
 
 
