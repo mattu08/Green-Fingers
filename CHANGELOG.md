@@ -1,5 +1,12 @@
 # Change Log
 
+## [V1.0-Final](https://github.com/mattu08/Green-Fingers/tree/V1.0-Final) (2016-02-01)
+[Full Changelog](https://github.com/mattu08/Green-Fingers/compare/V1.0-Full...V1.0-Final)
+
+**Implemented enhancements:**
+
+- Implementing a Window's system tray icon with added menu support. [\#1](https://github.com/mattu08/Green-Fingers/issues/1)
+
 ## [V1.0-Full](https://github.com/mattu08/Green-Fingers/tree/V1.0-Full) (2016-02-01)
 [Full Changelog](https://github.com/mattu08/Green-Fingers/compare/v1.1-beta...V1.0-Full)
 
