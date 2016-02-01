@@ -42,66 +42,66 @@ namespace Green_Fingers
                 if (FullDate == Sidd || MoDate == Sidd)
                 {
                     MessageBox.Show("Are ready to sow in doors! " + Sidd, "Your: " + Pn, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    nfyIGf = new System.Windows.Forms.NotifyIcon(components);
-                    nfyIGf.BalloonTipText = "Are ready to sow in doors! " + Sidd;
-                    nfyIGf.BalloonTipTitle = "Your: " + Pn;
-                    nfyIGf.Visible = true;
-                    nfyIGf.Icon = new Icon("Resources/leaf.ico", 40, 40);
-                    nfyIGf.BalloonTipIcon = ToolTipIcon.Info;
-                    nfyIGf.ShowBalloonTip(3);
+                    nfyIGfDPC.BalloonTipText = "Are ready to sow in doors! " + Sidd;
+                    nfyIGfDPC.BalloonTipTitle = "Your: " + Pn;
+                    nfyIGfDPC.Visible = true;
+                    ico = nfyIGfDPC.Icon;
+                    nfyIGfDPC.BalloonTipIcon = ToolTipIcon.Info;
+                    nfyIGfDPC.ShowBalloonTip(3);
+                    nfyIGfDPC.Icon = null;
+                    nfyIGfDPC.Visible = false;
                 }
 
                 if (FullDate == Sucd || MoDate == Sucd)
                 {
                     MessageBox.Show("Are ready to sow under cover! " + Sucd, "Your: " + Pn, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    nfyIGf = new System.Windows.Forms.NotifyIcon(this.components);
-                    nfyIGf.BalloonTipText = "Are ready to sow under cover! " + Sucd;
-                    nfyIGf.BalloonTipTitle = "Your: " + Pn;
-                    nfyIGf.Visible = true;
-                    nfyIGf.Icon = new Icon("Resources/leaf.ico", 40, 40);
-                    nfyIGf.BalloonTipIcon = ToolTipIcon.Info;
-                    nfyIGf.ShowBalloonTip(3);
+                    nfyIGfDPC.BalloonTipText = "Are ready to sow under cover! " + Sucd;
+                    nfyIGfDPC.BalloonTipTitle = "Your: " + Pn;
+                    nfyIGfDPC.Visible = true;
+                    ico = nfyIGfDPC.Icon;
+                    nfyIGfDPC.BalloonTipIcon = ToolTipIcon.Info;
+                    nfyIGfDPC.ShowBalloonTip(3);
+                    nfyIGfDPC.Icon = null;
+                    nfyIGfDPC.Visible = false;
                 }
 
                 if (FullDate == Sodd || MoDate == Sodd)
                 {
                     MessageBox.Show("Are ready to sow out doors! " + Sodd, "Your: " + Pn, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    nfyIGf = new System.Windows.Forms.NotifyIcon(this.components);
-                    nfyIGf.BalloonTipText = "Are ready to sow out doors! " + Sodd;
-                    nfyIGf.BalloonTipTitle = "Your: " + Pn;
-                    nfyIGf.Visible = true;
-                    nfyIGf.Icon = new Icon("Resources/leaf.ico", 40, 40);
-                    nfyIGf.BalloonTipIcon = ToolTipIcon.Info;
-                    nfyIGf.ShowBalloonTip(3);
+                    nfyIGfDPC.BalloonTipText = "Are ready to sow out doors! " + Sodd;
+                    nfyIGfDPC.BalloonTipTitle = "Your: " + Pn;
+                    nfyIGfDPC.Visible = true;
+                    ico = nfyIGfDPC.Icon;
+                    nfyIGfDPC.BalloonTipIcon = ToolTipIcon.Info;
+                    nfyIGfDPC.ShowBalloonTip(3);
+                    nfyIGfDPC.Icon = null;
+                    nfyIGfDPC.Visible = false;
                 }
 
                 if (FullDate == Pod || MoDate == Pod)
                 {
                     MessageBox.Show("Are ready to plant out doors! " + Pod, "Your: " + Pn, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    nfyIGf = new System.Windows.Forms.NotifyIcon(this.components);
-                    nfyIGf.BalloonTipText = "Are ready to plant out doors! " + Pod;
-                    nfyIGf.BalloonTipTitle = "Your: " + Pn;
-                    nfyIGf.Visible = true;
-                    nfyIGf.Icon = new Icon("Resources/leaf.ico", 40, 40);
-                    nfyIGf.BalloonTipIcon = ToolTipIcon.Info;
-                    nfyIGf.ShowBalloonTip(3);
+                    nfyIGfDPC.BalloonTipText = "Are ready to plant out doors! " + Pod;
+                    nfyIGfDPC.BalloonTipTitle = "Your: " + Pn;
+                    nfyIGfDPC.Visible = true;
+                    ico = nfyIGfDPC.Icon;
+                    nfyIGfDPC.BalloonTipIcon = ToolTipIcon.Info;
+                    nfyIGfDPC.ShowBalloonTip(3);
+                    nfyIGfDPC.Icon = null;
+                    nfyIGfDPC.Visible = false;
                 }
 
                 if (FullDate == Htd || MoDate == Htd)
                 {
                     MessageBox.Show("Are ready for harvest congratulations! " + Htd, "Your: " + Pn, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    nfyIGf = new System.Windows.Forms.NotifyIcon(this.components);
-                    nfyIGf.BalloonTipText = "Are ready for harvest congratulations! " + Htd;
-                    nfyIGf.BalloonTipTitle = "Your: " + Pn;
-                    nfyIGf.Visible = true;
-                    nfyIGf.Icon = new Icon("Resources/leaf.ico", 40, 40);
-                    nfyIGf.BalloonTipIcon = ToolTipIcon.Info;
-                    nfyIGf.ShowBalloonTip(3);
+                    nfyIGfDPC.BalloonTipText = "Are ready for harvest congratulations! " + Htd;
+                    nfyIGfDPC.BalloonTipTitle = "Your: " + Pn;
+                    nfyIGfDPC.Visible = true;
+                    ico = nfyIGfDPC.Icon;
+                    nfyIGfDPC.BalloonTipIcon = ToolTipIcon.Info;
+                    nfyIGfDPC.ShowBalloonTip(3);
+                    nfyIGfDPC.Icon = null;
+                    nfyIGfDPC.Visible = false;
                 }
 
                 if (item == null)

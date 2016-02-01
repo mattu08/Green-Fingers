@@ -1,3 +1,33 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Reminders>
+  <Reminder>
+    <PlantName>Swedes</PlantName>
+    <SowInDoorsDate>N/A</SowInDoorsDate>
+    <SowUnderCoverDate>N/A</SowUnderCoverDate>
+    <SowOutDoorsDate>01/03</SowOutDoorsDate>
+    <PlantOutDoors>N/A</PlantOutDoors>
+    <HarvestTimeDate>23/05</HarvestTimeDate>
+    <Notes>N/A</Notes>
+    <PlotNumber>0</PlotNumber>
+  </Reminder>
+  <Reminder>
+    <PlantName>Turnips</PlantName>
+    <SowInDoorsDate>08/04</SowInDoorsDate>
+    <SowUnderCoverDate></SowUnderCoverDate>
+    <SowOutDoorsDate></SowOutDoorsDate>
+    <PlantOutDoors></PlantOutDoors>
+    <HarvestTimeDate></HarvestTimeDate>
+    <Notes>N/A</Notes>
+    <PlotNumber>0</PlotNumber>
+  </Reminder>
+  <Reminder>
+    <PlantName>cars</PlantName>
+    <SowInDoorsDate>01/02</SowInDoorsDate>
+    <SowUnderCoverDate></SowUnderCoverDate>
+    <SowOutDoorsDate></SowOutDoorsDate>
+    <PlantOutDoors></PlantOutDoors>
+    <HarvestTimeDate></HarvestTimeDate>
+    <Notes></Notes>
+    <PlotNumber></PlotNumber>
+  </Reminder>
 </Reminders>

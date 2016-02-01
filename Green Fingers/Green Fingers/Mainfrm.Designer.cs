@@ -36,9 +36,14 @@
             System.Windows.Forms.Label plot_Number_NameLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mainfrm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveMnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ExitMnu = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMnu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabOview = new System.Windows.Forms.TabControl();
             this.tabOviewPage = new System.Windows.Forms.TabPage();
+            this.btnHideInSysTray = new System.Windows.Forms.Button();
             this.lblSelectedPlant = new System.Windows.Forms.Label();
             this.lblmaindataheading = new System.Windows.Forms.Label();
             this.btnClrXml = new System.Windows.Forms.Button();
@@ -100,12 +105,13 @@
             this.greenFingersTableAdapter = new Green_Fingers.GreenFingersDBDataSetTableAdapters.GreenFingersTableAdapter();
             this.tableAdapterManager = new Green_Fingers.GreenFingersDBDataSetTableAdapters.TableAdapterManager();
             this.nfyIGf = new System.Windows.Forms.NotifyIcon(this.components);
+            this.CtxmenNfyIGF = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tTipPlantsInDataBase = new System.Windows.Forms.ToolTip(this.components);
             this.tTipActivateReminders = new System.Windows.Forms.ToolTip(this.components);
-            this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ExitMnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveMnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.nfyIGfDPC = new System.Windows.Forms.NotifyIcon(this.components);
             iDLabel = new System.Windows.Forms.Label();
             plant_NameLabel = new System.Windows.Forms.Label();
             sow_IndoorsLabel = new System.Windows.Forms.Label();
@@ -127,6 +133,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.greenFingersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenFingersBindingNavigator)).BeginInit();
             this.greenFingersBindingNavigator.SuspendLayout();
+            this.CtxmenNfyIGF.SuspendLayout();
             this.SuspendLayout();
             // 
             // iDLabel
@@ -222,6 +229,39 @@
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveMnu,
+            this.exitToolStripMenuItem1,
+            this.ExitMnu});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.toolStripMenuItem1.Text = "File";
+            // 
+            // SaveMnu
+            // 
+            this.SaveMnu.Image = global::Green_Fingers.Properties.Resources.save;
+            this.SaveMnu.Name = "SaveMnu";
+            this.SaveMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.SaveMnu.Size = new System.Drawing.Size(167, 22);
+            this.SaveMnu.Text = "Save";
+            // 
+            // exitToolStripMenuItem1
+            // 
+            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(164, 6);
+            // 
+            // ExitMnu
+            // 
+            this.ExitMnu.Image = global::Green_Fingers.Properties.Resources.exit;
+            this.ExitMnu.Name = "ExitMnu";
+            this.ExitMnu.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.Q)));
+            this.ExitMnu.Size = new System.Drawing.Size(167, 22);
+            this.ExitMnu.Text = "Exit";
+            this.ExitMnu.Click += new System.EventHandler(this.ExitMnu_Click);
+            // 
             // AboutMnu
             // 
             this.AboutMnu.Image = global::Green_Fingers.Properties.Resources.about;
@@ -245,6 +285,7 @@
             // tabOviewPage
             // 
             this.tabOviewPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tabOviewPage.Controls.Add(this.btnHideInSysTray);
             this.tabOviewPage.Controls.Add(this.lblSelectedPlant);
             this.tabOviewPage.Controls.Add(this.lblmaindataheading);
             this.tabOviewPage.Controls.Add(this.btnClrXml);
@@ -265,6 +306,18 @@
             this.tabOviewPage.Size = new System.Drawing.Size(838, 444);
             this.tabOviewPage.TabIndex = 0;
             this.tabOviewPage.Text = "Overview";
+            // 
+            // btnHideInSysTray
+            // 
+            this.btnHideInSysTray.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnHideInSysTray.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHideInSysTray.Location = new System.Drawing.Point(685, 47);
+            this.btnHideInSysTray.Name = "btnHideInSysTray";
+            this.btnHideInSysTray.Size = new System.Drawing.Size(118, 50);
+            this.btnHideInSysTray.TabIndex = 16;
+            this.btnHideInSysTray.Text = "Hide in system tray";
+            this.btnHideInSysTray.UseVisualStyleBackColor = false;
+            this.btnHideInSysTray.Click += new System.EventHandler(this.btnHideInSysTray_Click);
             // 
             // lblSelectedPlant
             // 
@@ -817,9 +870,43 @@
             // 
             // nfyIGf
             // 
-            this.nfyIGf.Text = "notifyIconGf";
-            this.nfyIGf.Visible = true;
+            this.nfyIGf.ContextMenuStrip = this.CtxmenNfyIGF;
+            this.nfyIGf.Icon = ((System.Drawing.Icon)(resources.GetObject("nfyIGf.Icon")));
+            this.nfyIGf.Text = "Green Fingers";
             this.nfyIGf.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.nfyIGf_MouseDoubleClick);
+            // 
+            // CtxmenNfyIGF
+            // 
+            this.CtxmenNfyIGF.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.aboutToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.CtxmenNfyIGF.Name = "CtxmenNfyIGF";
+            this.CtxmenNfyIGF.Size = new System.Drawing.Size(153, 92);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Image = global::Green_Fingers.Properties.Resources.leaf;
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Image = global::Green_Fingers.Properties.Resources.about;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Image = global::Green_Fingers.Properties.Resources.exit;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // tTipPlantsInDataBase
             // 
@@ -831,38 +918,10 @@
             this.tTipActivateReminders.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.tTipActivateReminders.ToolTipTitle = "Green Fingers Tip.";
             // 
-            // exitToolStripMenuItem1
+            // nfyIGfDPC
             // 
-            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(164, 6);
-            // 
-            // ExitMnu
-            // 
-            this.ExitMnu.Image = global::Green_Fingers.Properties.Resources.exit;
-            this.ExitMnu.Name = "ExitMnu";
-            this.ExitMnu.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.Q)));
-            this.ExitMnu.Size = new System.Drawing.Size(167, 22);
-            this.ExitMnu.Text = "Exit";
-            this.ExitMnu.Click += new System.EventHandler(this.ExitMnu_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SaveMnu,
-            this.exitToolStripMenuItem1,
-            this.ExitMnu});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
-            this.toolStripMenuItem1.Text = "File";
-            // 
-            // SaveMnu
-            // 
-            this.SaveMnu.Image = global::Green_Fingers.Properties.Resources.save;
-            this.SaveMnu.Name = "SaveMnu";
-            this.SaveMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.SaveMnu.Size = new System.Drawing.Size(228, 22);
-            this.SaveMnu.Text = "Save";
+            this.nfyIGfDPC.Icon = ((System.Drawing.Icon)(resources.GetObject("nfyIGfDPC.Icon")));
+            this.nfyIGfDPC.Text = "Green Fingers Alert";
             // 
             // Mainfrm
             // 
@@ -896,6 +955,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.greenFingersBindingNavigator)).EndInit();
             this.greenFingersBindingNavigator.ResumeLayout(false);
             this.greenFingersBindingNavigator.PerformLayout();
+            this.CtxmenNfyIGF.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -970,11 +1030,17 @@
         private System.Windows.Forms.ToolTip tTipActivateReminders;
         private System.Windows.Forms.Label lblDatabaseInfo2;
         private System.Windows.Forms.Label lblDatabaseInfo1;
-        public System.ComponentModel.IContainer components;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator exitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ExitMnu;
         private System.Windows.Forms.ToolStripMenuItem SaveMnu;
+        private System.Windows.Forms.Button btnHideInSysTray;
+        private System.ComponentModel.IContainer components;
+        public System.Windows.Forms.NotifyIcon nfyIGfDPC;
+        private System.Windows.Forms.ContextMenuStrip CtxmenNfyIGF;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

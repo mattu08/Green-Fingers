@@ -23,7 +23,6 @@ namespace Green_Fingers
 {
     public partial class Mainfrm : Form
     {
-        //GetSqlData getSqlCl; 
         public String S_Id;
         public String Plant_Name;
         public String Sow_In;
@@ -36,7 +35,9 @@ namespace Green_Fingers
         public String Get_SQL_List_Var;
         public String lstToTxt;
         public static readonly String GFRegAct = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\GreenFingers\AppSettings", "ReminderSet", null);
+        public static readonly String GFRegSysTray = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\GreenFingers\AppSettings", "StartInSystemTray", null);
         public static readonly String GFRegRunAtStartUp = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "GreenFinger", null);
+        public Icon ico;
 
         public Mainfrm()
         {
@@ -44,6 +45,7 @@ namespace Green_Fingers
             {
                 chkfiles();
                 chkRegAct();
+                chkRegSysT();
                 InitializeComponent();
             }
             catch (SystemException e)
@@ -51,6 +53,18 @@ namespace Green_Fingers
                 MessageBox.Show("Something is seriously wrong, must close!", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
+        }
+
+        private void Mainfrm_Load(object sender, EventArgs e)
+        {
+            RegGetSysTVel();
+            chkRegRun();
+            RegGetReminderVel();
+            xmlRefeshlst();
+            this.greenFingersTableAdapter.Fill(this.greenFingersDBDataSet.GreenFingers);
+            //nfyIGf = new System.Windows.Forms.NotifyIcon(components);
+            nfyIGf.Visible = true;
+            ico = nfyIGf.Icon;
         }
 
         private void chkRegAct()
@@ -61,6 +75,18 @@ namespace Green_Fingers
 
                 //storing the values  
                 key.SetValue("ReminderSet", "0");
+                key.Close();
+            }
+        }
+
+        private void chkRegSysT()
+        {
+            if (GFRegSysTray == null)
+            {
+                RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GreenFingers\AppSettings");
+
+                //storing the values  
+                key.SetValue("StartInSystemTray", "0");
                 key.Close();
             }
         }
@@ -77,7 +103,22 @@ namespace Green_Fingers
             }
         }
 
-        public void testRegGetVel()
+        public void RegGetSysTVel()
+        {
+            RegistryKey myKeys = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GreenFingers\AppSettings", false);
+            {
+                String values = (String)myKeys.GetValue("StartInSystemTray");
+
+                if (values == "1")
+                {
+                    Visible = false;
+                    ShowInTaskbar = false;
+                    Opacity = 0;
+                }
+            }
+        }
+
+        public void RegGetReminderVel()
         {
             RegistryKey myKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GreenFingers\AppSettings", false);
             {
@@ -99,85 +140,81 @@ namespace Green_Fingers
 
         private void chkfiles()
         {
-            if (System.IO.File.Exists(@"Resources/leaf.ico")) { }
-            else { MessageBox.Show("Resources/leaf.ico is missing!", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); this.Close(); }
-
             if (System.IO.File.Exists(@"GreenFingersDB.mdf")) { }
             else { MessageBox.Show("GreenFingersDB.mdf Database file is missing!", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); this.Close(); }
 
             if (System.IO.File.Exists(@"Resources\SavedReminders.xml")) { }
             else { MessageBox.Show("Resources/SavedReminders.xml is missing! Creating a new one, restarting Green Fingers.", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); makeNewXmlFile(); this.Close(); }
         }
-        
+
         public void ExtGetDB()
         {
 
             string ConString = Properties.Settings.Default.GreenFingersDBConn;
 
-            using (SqlConnection Conn = new SqlConnection(ConString))
+            try
             {
-                
-                string strGf = "SELECT * FROM GreenFingers WHERE [Plant Name] = @List_Var";
-                SqlCommand SqlCmd = new SqlCommand(strGf, Conn);
-                SqlCmd.Parameters.AddWithValue("@List_Var", Get_SQL_List_Var);
-                Conn.Open();
-                
-                SqlDataReader GfReader = SqlCmd.ExecuteReader();
-
-                if (GfReader.HasRows)
+                using (SqlConnection Conn = new SqlConnection(ConString))
                 {
-                    while (GfReader.Read())
+
+                    string strGf = "SELECT * FROM GreenFingers WHERE [Plant Name] = @List_Var";
+                    SqlCommand SqlCmd = new SqlCommand(strGf, Conn);
+                    SqlCmd.Parameters.AddWithValue("@List_Var", Get_SQL_List_Var);
+                    Conn.Open();
+
+                    SqlDataReader GfReader = SqlCmd.ExecuteReader();
+
+                    if (GfReader.HasRows)
                     {
-                        if (GfReader["ID"] == null) { S_Id = "N/A"; }
-                        else { S_Id = GfReader["ID"].ToString(); }
+                        while (GfReader.Read())
+                        {
+                            if (GfReader["ID"] == null) { S_Id = "N/A"; }
+                            else { S_Id = GfReader["ID"].ToString(); }
 
-                        if (GfReader["Plant Name"] == null) { Plant_Name = "N/A"; }
-                        else { Plant_Name = GfReader["Plant Name"].ToString(); }
+                            if (GfReader["Plant Name"] == null) { Plant_Name = "N/A"; }
+                            else { Plant_Name = GfReader["Plant Name"].ToString(); }
 
-                        if (GfReader["Sow Indoors"] == null) { Sow_In = "N/A"; }
-                        else { Sow_In = GfReader["Sow Indoors"].ToString(); }
+                            if (GfReader["Sow Indoors"] == null) { Sow_In = "N/A"; }
+                            else { Sow_In = GfReader["Sow Indoors"].ToString(); }
 
-                        if (GfReader["Sow Under Cover"] == null) { Sow_Un = "N/A"; }
-                        else { Sow_Un = GfReader["Sow Under Cover"].ToString(); }
+                            if (GfReader["Sow Under Cover"] == null) { Sow_Un = "N/A"; }
+                            else { Sow_Un = GfReader["Sow Under Cover"].ToString(); }
 
-                        if (GfReader["Sow Outdoors"] == null) { Sow_Out = "N/A"; }
-                        else { Sow_Out = GfReader["Sow Outdoors"].ToString(); }
+                            if (GfReader["Sow Outdoors"] == null) { Sow_Out = "N/A"; }
+                            else { Sow_Out = GfReader["Sow Outdoors"].ToString(); }
 
-                        if (GfReader["Plant Out"] == null) { Plant_Out = "N/A"; }
-                        else { Plant_Out = GfReader["Plant Out"].ToString(); }
+                            if (GfReader["Plant Out"] == null) { Plant_Out = "N/A"; }
+                            else { Plant_Out = GfReader["Plant Out"].ToString(); }
 
-                        if (GfReader["Harvest Time"] == null) { Har_Time = "N/A"; }
-                        else { Har_Time = GfReader["Harvest Time"].ToString(); }
+                            if (GfReader["Harvest Time"] == null) { Har_Time = "N/A"; }
+                            else { Har_Time = GfReader["Harvest Time"].ToString(); }
 
-                        if (GfReader["Notes"] == null) { Notes = "N/A"; }
-                        else { Notes = GfReader["Notes"].ToString();  }
+                            if (GfReader["Notes"] == null) { Notes = "N/A"; }
+                            else { Notes = GfReader["Notes"].ToString(); }
 
-                        if (GfReader["Plot Number/Name"] == null) { Plt_Num = "N/A"; }
-                        else { Plt_Num = GfReader["Plot Number/Name"].ToString();  }
+                            if (GfReader["Plot Number/Name"] == null) { Plt_Num = "N/A"; }
+                            else { Plt_Num = GfReader["Plot Number/Name"].ToString(); }
 
-                        //int x = Int32.Parse(mo);
-                        //Console.WriteLine(x);
+                            //int x = Int32.Parse(mo);
+                            //Console.WriteLine(x);
+                        }
+
                     }
-                
+                    else
+                    {
+                        //Console.WriteLine("No Rows found.");
+                    }
+                    GfReader.Close();
+                    Conn.Close();
                 }
-                else
-                {
-                    //Console.WriteLine("No Rows found.");
-                }
-                GfReader.Close();
-                Conn.Close();
-        }
-        
-  }
 
-        private void Mainfrm_Load(object sender, EventArgs e)
-        {
-            chkRegRun();
-            testRegGetVel();
-            xmlRefeshlst();
-            this.greenFingersTableAdapter.Fill(this.greenFingersDBDataSet.GreenFingers);
+            }
+            catch (System.Data.SqlClient.SqlException sqlException)
+            {
+                System.Windows.Forms.MessageBox.Show(sqlException.Message);
+            }
         }
-        
+
         private void ExitMnu_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -202,9 +239,6 @@ namespace Green_Fingers
             Get_SQL_List_Var = LstbLoadInSQL.GetItemText(LstbLoadInSQL.SelectedItem);
             TxtBSQL.Text = Get_SQL_List_Var;
             ExtGetDB();
-           //getSqlCl.ExtGetDBs();
-            //GetSqlData open = new GetSqlData();
-            //open.ExtGetDBs();
         }
 
         private void btnActivate_Click(object sender, EventArgs e)
@@ -213,6 +247,11 @@ namespace Green_Fingers
             //storing the values  
             key.SetValue("ReminderSet", "1");
             key.Close();
+
+            RegistryKey keys = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GreenFingers\AppSettings");
+            //storing the values  
+            keys.SetValue("StartInSystemTray", "1");
+            keys.Close();
 
             btnActivate.Visible = false;
             btnActivate.Enabled = false;
@@ -228,6 +267,11 @@ namespace Green_Fingers
             //storing the values  
             key.SetValue("ReminderSet", "0");
             key.Close();
+
+            RegistryKey keys = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GreenFingers\AppSettings");
+            //storing the values  
+            keys.SetValue("StartInSystemTray", "0");
+            keys.Close();
 
             btnDeactivate.Visible = false;
             btnDeactivate.Enabled = false;
@@ -245,7 +289,6 @@ namespace Green_Fingers
                 {
                     XDocument xdoc = XDocument.Load(@"Resources\SavedReminders.xml");
                     XElement root = new XElement("Reminder");
-                    //root.Add(new XAttribute("name", "name goes here"));
                     root.Add(new XElement("PlantName", Plant_Name));
                     root.Add(new XElement("SowInDoorsDate", Sow_In));
                     root.Add(new XElement("SowUnderCoverDate", Sow_Un));
@@ -327,10 +370,6 @@ namespace Green_Fingers
             xmlRefeshlst();
         }
 
-        private void nfyIGf_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
 
         private void LstbLoadInSQL_MouseHover(object sender, EventArgs e)
         {
@@ -340,6 +379,36 @@ namespace Green_Fingers
         private void btnActivate_MouseHover(object sender, EventArgs e)
         {
             tTipActivateReminders.SetToolTip(btnActivate, "Click on this button to activate or deactivate the reminders below.");
+        }
+
+        private void btnHideInSysTray_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Visible = true;
+            ShowInTaskbar = true;
+            Opacity = 100;
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            aboutfrm AboutForm = new aboutfrm();
+            AboutForm.Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void nfyIGf_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Visible = true;
+            ShowInTaskbar = true;
+            Opacity = 100;
         }
     }
 }

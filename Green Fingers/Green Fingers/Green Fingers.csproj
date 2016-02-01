@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>leaf.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\leaf.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -156,9 +156,7 @@
     <None Include="Resources\about.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\leaf.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Resources\leaf.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -186,7 +184,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>GreenFingersDB.mdf</DependentUpon>
     </Content>
-    <Content Include="leaf.ico" />
     <None Include="Resources\arow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
