@@ -12,13 +12,17 @@ namespace Green_Fingers
     {
         public void Datechecker()
         {
+            #region Load in System Date
             DateTime GrabSysDate = DateTime.Today;
             String FullDate = GrabSysDate.ToString("dd'/'MM'/'yyyy", new CultureInfo("en-GB"));
             String MoDate = GrabSysDate.ToString("dd'/'MM", new CultureInfo("en-GB"));
-            //Console.WriteLine(FullDate); //For testing
-            //Console.WriteLine(MoDate); //For testing
-
+            /*
+            Console.WriteLine(FullDate); //For testing
+            Console.WriteLine(MoDate); //For testing
+            */
+            #endregion
             //  Load the XML file
+            #region Load in XML Data
             XDocument gfdocxml = XDocument.Load("Resources\\SavedReminders.xml");
             string Pn;
             string Sidd;
@@ -38,7 +42,7 @@ namespace Green_Fingers
                     Htd = desgf.Element("HarvestTimeDate").Value.ToString()
 
                 });
-
+                #region Start Of GreenFingers Popup checking code
                 if (FullDate == Sidd || MoDate == Sidd)
                 {
                     MessageBox.Show("Are ready to sow in doors! " + Sidd, "Your: " + Pn, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -109,6 +113,8 @@ namespace Green_Fingers
                     MessageBox.Show("Corrupt XML file!", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                #endregion
+            #endregion
             }
         }
     }

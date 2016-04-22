@@ -86,6 +86,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GreenFingersDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="LoadSetRegistryClass.cs" />
     <Compile Include="Mainfrm.cs">
       <SubType>Form</SubType>
     </Compile>

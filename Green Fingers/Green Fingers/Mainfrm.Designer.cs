@@ -423,7 +423,7 @@
             // 
             this.btnActivate.BackColor = System.Drawing.Color.LawnGreen;
             this.btnActivate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnActivate.Location = new System.Drawing.Point(345, 136);
+            this.btnActivate.Location = new System.Drawing.Point(347, 136);
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.Size = new System.Drawing.Size(156, 25);
             this.btnActivate.TabIndex = 7;
@@ -882,13 +882,13 @@
             this.aboutToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.CtxmenNfyIGF.Name = "CtxmenNfyIGF";
-            this.CtxmenNfyIGF.Size = new System.Drawing.Size(153, 92);
+            this.CtxmenNfyIGF.Size = new System.Drawing.Size(108, 70);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Image = global::Green_Fingers.Properties.Resources.leaf;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -896,7 +896,7 @@
             // 
             this.aboutToolStripMenuItem.Image = global::Green_Fingers.Properties.Resources.about;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -904,7 +904,7 @@
             // 
             this.exitToolStripMenuItem.Image = global::Green_Fingers.Properties.Resources.exit;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1009,10 +1009,8 @@
         private System.Windows.Forms.Button delReminder;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ListView lstVxmlin;
-        private System.Windows.Forms.Button btnActivate;
         private System.Windows.Forms.Button BtnSendToSQL;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnDeactivate;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -1041,6 +1039,8 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        public System.Windows.Forms.Button btnActivate;
+        public System.Windows.Forms.Button btnDeactivate;
     }
 }
 

@@ -34,21 +34,19 @@ namespace Green_Fingers
         public String Plt_Num;
         public String Get_SQL_List_Var;
         public String lstToTxt;
-        public static readonly String GFRegAct = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\GreenFingers\AppSettings", "ReminderSet", null);
-        public static readonly String GFRegSysTray = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\GreenFingers\AppSettings", "StartInSystemTray", null);
-        public static readonly String GFRegRunAtStartUp = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "GreenFinger", null);
         public Icon ico;
 
         public Mainfrm()
         {
             try
             {
+                LoadSetRegistryClass lsr = new LoadSetRegistryClass();
+                lsr.chkRegAct();
+                lsr.chkRegSysT();
                 chkfiles();
-                chkRegAct();
-                chkRegSysT();
                 InitializeComponent();
             }
-            catch (SystemException e)
+            catch (SystemException)
             {
                 MessageBox.Show("Something is seriously wrong, must close!", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
@@ -57,85 +55,15 @@ namespace Green_Fingers
 
         private void Mainfrm_Load(object sender, EventArgs e)
         {
-            RegGetSysTVel();
-            chkRegRun();
-            RegGetReminderVel();
+            LoadSetRegistryClass lsr = new LoadSetRegistryClass();
+            LoadSetRegistryClass.RegGetSysTVel(this);
+            lsr.chkRegRun();
+            LoadSetRegistryClass.RegGetReminderVel(this);
             xmlRefeshlst();
             this.greenFingersTableAdapter.Fill(this.greenFingersDBDataSet.GreenFingers);
             //nfyIGf = new System.Windows.Forms.NotifyIcon(components);
             nfyIGf.Visible = true;
             ico = nfyIGf.Icon;
-        }
-
-        private void chkRegAct()
-        {
-            if (GFRegAct == null)
-            {
-                RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GreenFingers\AppSettings");
-
-                //storing the values  
-                key.SetValue("ReminderSet", "0");
-                key.Close();
-            }
-        }
-
-        private void chkRegSysT()
-        {
-            if (GFRegSysTray == null)
-            {
-                RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GreenFingers\AppSettings");
-
-                //storing the values  
-                key.SetValue("StartInSystemTray", "0");
-                key.Close();
-            }
-        }
-
-        private void chkRegRun()
-        {
-            if (GFRegRunAtStartUp == null)
-            {
-                string Gfdirectory = AppDomain.CurrentDomain.BaseDirectory.ToString();
-                string GfName = "GreenFinger.exe";
-                RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-                key.SetValue("GreenFinger", Gfdirectory + GfName);
-                key.Close();
-            }
-        }
-
-        public void RegGetSysTVel()
-        {
-            RegistryKey myKeys = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GreenFingers\AppSettings", false);
-            {
-                String values = (String)myKeys.GetValue("StartInSystemTray");
-
-                if (values == "1")
-                {
-                    Visible = false;
-                    ShowInTaskbar = false;
-                    Opacity = 0;
-                }
-            }
-        }
-
-        public void RegGetReminderVel()
-        {
-            RegistryKey myKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GreenFingers\AppSettings", false);
-            {
-                String value = (String)myKey.GetValue("ReminderSet");
-
-                if (value == "0")
-                {
-                    this.btnActivate.Visible = true;
-                }
-
-                if (value == "1")
-                {
-                    this.btnDeactivate.Visible = true;
-                    DatePopupClass open = new DatePopupClass();
-                    open.Datechecker();
-                }
-            }
         }
 
         private void chkfiles()
@@ -241,42 +169,16 @@ namespace Green_Fingers
             ExtGetDB();
         }
 
-        private void btnActivate_Click(object sender, EventArgs e)
+        public void btnActivate_Click(object sender, EventArgs e)
         {
-            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GreenFingers\AppSettings");
-            //storing the values  
-            key.SetValue("ReminderSet", "1");
-            key.Close();
-
-            RegistryKey keys = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GreenFingers\AppSettings");
-            //storing the values  
-            keys.SetValue("StartInSystemTray", "1");
-            keys.Close();
-
-            btnActivate.Visible = false;
-            btnActivate.Enabled = false;
-            btnDeactivate.Visible = true;
-            btnDeactivate.Enabled = true;
+            LoadSetRegistryClass.RegActavate(this);
             DatePopupClass open = new DatePopupClass();
             open.Datechecker();
         }
 
-        private void btnDeactivate_Click(object sender, EventArgs e)
+        public void btnDeactivate_Click(object sender, EventArgs e)
         {
-            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GreenFingers\AppSettings");
-            //storing the values  
-            key.SetValue("ReminderSet", "0");
-            key.Close();
-
-            RegistryKey keys = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GreenFingers\AppSettings");
-            //storing the values  
-            keys.SetValue("StartInSystemTray", "0");
-            keys.Close();
-
-            btnDeactivate.Visible = false;
-            btnDeactivate.Enabled = false;
-            btnActivate.Visible = true;
-            btnActivate.Enabled = true;
+            LoadSetRegistryClass.RegDeactivate(this);
         }
 
         private void BtnSendToSQL_Click(object sender, EventArgs e)
