@@ -1,5 +1,17 @@
 # Change Log
 
+## [V1.3-Final-Turnip](https://github.com/mattu08/Green-Fingers/tree/V1.3-Final-Turnip) (2016-04-24)
+[Full Changelog](https://github.com/mattu08/Green-Fingers/compare/V1.2-Final...V1.3-Final-Turnip)
+
+**Release Details:**
+
+• Full OOP Implementation Update, Moved Away From Procedural Programming
+And Bug-fixes With Added Error Correction.
+
+• Made The Code More Maintainable, With Separate Classes.
+
+• Removed Junk Code.
+
 ## [V1.2-Final](https://github.com/mattu08/Green-Fingers/tree/V1.2-Final) (2016-04-22)
 [Full Changelog](https://github.com/mattu08/Green-Fingers/compare/V1.1-Final...V1.2-Final)
 
