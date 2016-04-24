@@ -1,5 +1,15 @@
 # Change Log
 
+## [V1.4-Final-Gooseberry](https://github.com/mattu08/Green-Fingers/tree/V1.4-Final-Gooseberry) (2016-04-24)
+[Full Changelog](https://github.com/mattu08/Green-Fingers/compare/V1.3-Final-Turnip...V1.4-Final-Gooseberry)
+
+**Release Details:**
+
+• Green Fingers now checks on start-up to see if the database file exists
+and will create a new database file, from its own resource if not found.
+
+• Removed Junk Code.
+
 ## [V1.3-Final-Turnip](https://github.com/mattu08/Green-Fingers/tree/V1.3-Final-Turnip) (2016-04-24)
 [Full Changelog](https://github.com/mattu08/Green-Fingers/compare/V1.2-Final...V1.3-Final-Turnip)
 
