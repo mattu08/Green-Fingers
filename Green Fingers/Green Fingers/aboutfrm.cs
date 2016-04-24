@@ -6,6 +6,10 @@ namespace Green_Fingers
 {
     public partial class aboutfrm : Form
     {
+        /*
+         * Created By Matthew Utin. https://github.com/mattu08/Green-Fingers/
+        */
+
         public aboutfrm()
         {
             InitializeComponent();
@@ -16,7 +20,6 @@ namespace Green_Fingers
             Version GfVersion = Assembly.GetExecutingAssembly().GetName().Version;
             this.LblVer.Text = String.Format(this.LblVer.Text, GfVersion.Major, GfVersion.Minor, GfVersion.Build, GfVersion.Revision);
         }
-
 
         private void OkBtn_Click_1(object sender, EventArgs e)
         {

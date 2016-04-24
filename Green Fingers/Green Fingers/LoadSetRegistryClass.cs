@@ -6,6 +6,10 @@ namespace Green_Fingers
 {
     class LoadSetRegistryClass
     {
+        /*
+         * Created By Matthew Utin. https://github.com/mattu08/Green-Fingers/
+        */
+
         private static readonly String _GFRegAct = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\GreenFingers\AppSettings", "ReminderSet", null);
         private static readonly String _GFRegSysTray = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\GreenFingers\AppSettings", "StartInSystemTray", null);
         private static readonly String _GFRegRunAtStartUp = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "GreenFinger", null);

@@ -6,6 +6,11 @@ namespace Green_Fingers
 {
     public partial class Mainfrm : Form
     {
+        /// <summary>
+        /// Created By Matthew Utin. https://github.com/mattu08/Green-Fingers/
+        /// </summary>
+
+        #region Set Vars
         public String S_Id;
         public String Plant_Name;
         public String Sow_In;
@@ -18,6 +23,7 @@ namespace Green_Fingers
         public String Get_SQL_List_Var;
         public String lstToTxt;
         public Icon ico;
+        #endregion
 
         public Mainfrm()
         {
@@ -51,10 +57,10 @@ namespace Green_Fingers
         private void chkfiles()
         {
             if (System.IO.File.Exists(@"GreenFingersDB.mdf")) { }
-            else { MessageBox.Show("GreenFingersDB.mdf Database file is missing!", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); this.Close(); }
+            else { MessageBox.Show("GreenFingersDB.mdf Database file is missing! Creating a new one, restart Green Fingers after it has closed.", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); CreateNewDatabaseClass.ExtDB(this); this.Close(); }
 
             if (System.IO.File.Exists(@"Resources\SavedReminders.xml")) { }
-            else { MessageBox.Show("Resources/SavedReminders.xml is missing! Creating a new one, restarting Green Fingers.", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); SQLToXMLDataOutputClass.makeNewXmlFile(this); this.Close(); }
+            else { MessageBox.Show("Resources/SavedReminders.xml is missing! Creating a new one, restart Green Fingers after it has closed.", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); SQLToXMLDataOutputClass.makeNewXmlFile(this); this.Close(); }
         }
 
         private void ExitMnu_Click(object sender, EventArgs e)
@@ -67,7 +73,6 @@ namespace Green_Fingers
             aboutfrm AboutForm = new aboutfrm();
             AboutForm.Show();
         }
-
 
         private void greenFingersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {

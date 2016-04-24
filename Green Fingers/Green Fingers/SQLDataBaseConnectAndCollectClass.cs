@@ -6,6 +6,9 @@ namespace Green_Fingers
     {
         public static void ExtGetDB(Mainfrm send)
         {
+            /*
+             * Created By Matthew Utin. https://github.com/mattu08/Green-Fingers/
+            */
             string ConString = Properties.Settings.Default.GreenFingersDBConn;
 
             try

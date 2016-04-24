@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>5fb8752e</NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>5fb8752e</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -73,6 +73,7 @@
     <Compile Include="aboutfrm.Designer.cs">
       <DependentUpon>aboutfrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateNewDatabaseClass.cs" />
     <Compile Include="DatePopupClass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +181,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Resources\SavedReminders.xml" />
+    <None Include="bin\Debug\GreenFingersDB.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="bin\Debug\GreenFingersDB_log.ldf">
+      <DependentUpon>GreenFingersDB.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GreenFingersDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
