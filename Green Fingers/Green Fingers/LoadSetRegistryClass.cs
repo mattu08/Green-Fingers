@@ -1,9 +1,5 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Green_Fingers
@@ -13,7 +9,6 @@ namespace Green_Fingers
         private static readonly String _GFRegAct = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\GreenFingers\AppSettings", "ReminderSet", null);
         private static readonly String _GFRegSysTray = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\GreenFingers\AppSettings", "StartInSystemTray", null);
         private static readonly String _GFRegRunAtStartUp = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "GreenFinger", null);
-
 
         private static bool showErrors = false;
         public bool ShowErrors
@@ -191,7 +186,6 @@ namespace Green_Fingers
                 ShowErrorMessages(e, "SetReminderAndSystemTray Error!");
                 return false;
             }
-
         }
 
         public static void RegActavate(Mainfrm open2)

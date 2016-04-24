@@ -1008,7 +1008,6 @@
         private System.Windows.Forms.Button btnClrXml;
         private System.Windows.Forms.Button delReminder;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ListView lstVxmlin;
         private System.Windows.Forms.Button BtnSendToSQL;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -1017,7 +1016,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ListBox LstbLoadInSQL;
         private System.Windows.Forms.TextBox TxtBSQL;
         public System.Windows.Forms.NotifyIcon nfyIGf;
         private System.Windows.Forms.Label lblmaindataheading;
@@ -1041,6 +1039,8 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         public System.Windows.Forms.Button btnActivate;
         public System.Windows.Forms.Button btnDeactivate;
+        public System.Windows.Forms.ListBox LstbLoadInSQL;
+        public System.Windows.Forms.ListView lstVxmlin;
     }
 }
 

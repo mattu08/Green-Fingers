@@ -1,23 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Xml.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
-using System.Data.SqlClient;
-using System.Data.OleDb;
-using System.IO;
-using Microsoft.Win32;
-using Green_Fingers.Properties;
-using System.Reflection;
-using System.Xml;
-using System.Xml.XPath;
 
 namespace Green_Fingers
 {
@@ -59,9 +42,8 @@ namespace Green_Fingers
             LoadSetRegistryClass.RegGetSysTVel(this);
             lsr.chkRegRun();
             LoadSetRegistryClass.RegGetReminderVel(this);
-            xmlRefeshlst();
+            SQLToXMLDataOutputClass.xmlRefeshlst(this);
             this.greenFingersTableAdapter.Fill(this.greenFingersDBDataSet.GreenFingers);
-            //nfyIGf = new System.Windows.Forms.NotifyIcon(components);
             nfyIGf.Visible = true;
             ico = nfyIGf.Icon;
         }
@@ -72,75 +54,7 @@ namespace Green_Fingers
             else { MessageBox.Show("GreenFingersDB.mdf Database file is missing!", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); this.Close(); }
 
             if (System.IO.File.Exists(@"Resources\SavedReminders.xml")) { }
-            else { MessageBox.Show("Resources/SavedReminders.xml is missing! Creating a new one, restarting Green Fingers.", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); makeNewXmlFile(); this.Close(); }
-        }
-
-        public void ExtGetDB()
-        {
-
-            string ConString = Properties.Settings.Default.GreenFingersDBConn;
-
-            try
-            {
-                using (SqlConnection Conn = new SqlConnection(ConString))
-                {
-
-                    string strGf = "SELECT * FROM GreenFingers WHERE [Plant Name] = @List_Var";
-                    SqlCommand SqlCmd = new SqlCommand(strGf, Conn);
-                    SqlCmd.Parameters.AddWithValue("@List_Var", Get_SQL_List_Var);
-                    Conn.Open();
-
-                    SqlDataReader GfReader = SqlCmd.ExecuteReader();
-
-                    if (GfReader.HasRows)
-                    {
-                        while (GfReader.Read())
-                        {
-                            if (GfReader["ID"] == null) { S_Id = "N/A"; }
-                            else { S_Id = GfReader["ID"].ToString(); }
-
-                            if (GfReader["Plant Name"] == null) { Plant_Name = "N/A"; }
-                            else { Plant_Name = GfReader["Plant Name"].ToString(); }
-
-                            if (GfReader["Sow Indoors"] == null) { Sow_In = "N/A"; }
-                            else { Sow_In = GfReader["Sow Indoors"].ToString(); }
-
-                            if (GfReader["Sow Under Cover"] == null) { Sow_Un = "N/A"; }
-                            else { Sow_Un = GfReader["Sow Under Cover"].ToString(); }
-
-                            if (GfReader["Sow Outdoors"] == null) { Sow_Out = "N/A"; }
-                            else { Sow_Out = GfReader["Sow Outdoors"].ToString(); }
-
-                            if (GfReader["Plant Out"] == null) { Plant_Out = "N/A"; }
-                            else { Plant_Out = GfReader["Plant Out"].ToString(); }
-
-                            if (GfReader["Harvest Time"] == null) { Har_Time = "N/A"; }
-                            else { Har_Time = GfReader["Harvest Time"].ToString(); }
-
-                            if (GfReader["Notes"] == null) { Notes = "N/A"; }
-                            else { Notes = GfReader["Notes"].ToString(); }
-
-                            if (GfReader["Plot Number/Name"] == null) { Plt_Num = "N/A"; }
-                            else { Plt_Num = GfReader["Plot Number/Name"].ToString(); }
-
-                            //int x = Int32.Parse(mo);
-                            //Console.WriteLine(x);
-                        }
-
-                    }
-                    else
-                    {
-                        //Console.WriteLine("No Rows found.");
-                    }
-                    GfReader.Close();
-                    Conn.Close();
-                }
-
-            }
-            catch (System.Data.SqlClient.SqlException sqlException)
-            {
-                System.Windows.Forms.MessageBox.Show(sqlException.Message);
-            }
+            else { MessageBox.Show("Resources/SavedReminders.xml is missing! Creating a new one, restarting Green Fingers.", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); SQLToXMLDataOutputClass.makeNewXmlFile(this); this.Close(); }
         }
 
         private void ExitMnu_Click(object sender, EventArgs e)
@@ -162,11 +76,11 @@ namespace Green_Fingers
             this.tableAdapterManager.UpdateAll(this.greenFingersDBDataSet);
         }
 
-        private void LstbLoadInSQL_SelectedIndexChanged(object sender, EventArgs e)
+        public void LstbLoadInSQL_SelectedIndexChanged(object sender, EventArgs e)
         {
             Get_SQL_List_Var = LstbLoadInSQL.GetItemText(LstbLoadInSQL.SelectedItem);
             TxtBSQL.Text = Get_SQL_List_Var;
-            ExtGetDB();
+            SQLDataBaseConnectAndCollectClass.ExtGetDB(this);
         }
 
         public void btnActivate_Click(object sender, EventArgs e)
@@ -183,95 +97,18 @@ namespace Green_Fingers
 
         private void BtnSendToSQL_Click(object sender, EventArgs e)
         {
-            if (Plant_Name == null)
-                {
-                    MessageBox.Show("Select a plant! Or if you do not see anything to select add a plant to the database.", "Green Fingers", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    XDocument xdoc = XDocument.Load(@"Resources\SavedReminders.xml");
-                    XElement root = new XElement("Reminder");
-                    root.Add(new XElement("PlantName", Plant_Name));
-                    root.Add(new XElement("SowInDoorsDate", Sow_In));
-                    root.Add(new XElement("SowUnderCoverDate", Sow_Un));
-                    root.Add(new XElement("SowOutDoorsDate", Sow_Out));
-                    root.Add(new XElement("PlantOutDoors", Plant_Out));
-                    root.Add(new XElement("HarvestTimeDate", Har_Time));
-                    root.Add(new XElement("Notes", Notes));
-                    root.Add(new XElement("PlotNumber", Plt_Num));
-                    xdoc.Element("Reminders").Add(root);
-                    xdoc.Save("Resources\\SavedReminders.xml");
-                    xmlRefeshlst();
-                }
+            SQLToXMLDataOutputClass.SQLOutputToXML(this);
         }
 
-        private void xmlRefeshlst()
-        {
-            lstVxmlin.Items.Clear();
-            XDocument doc = XDocument.Load("Resources\\SavedReminders.xml");
-
-            foreach (var dm in doc.Descendants("Reminder"))
-            {
-                ListViewItem item = new ListViewItem(new string[]
-                {
-                    dm.Element("PlantName").Value,
-                    dm.Element("SowInDoorsDate").Value,
-                    dm.Element("SowUnderCoverDate").Value,
-                    dm.Element("SowOutDoorsDate").Value,
-                    dm.Element("PlantOutDoors").Value,
-                    dm.Element("HarvestTimeDate").Value,
-
-                });
-                if (item == null)
-                {
-                    MessageBox.Show("Corrupt XML file!", "Green Fingers Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                lstVxmlin.Items.Add(item);
-            }
-        }
-       
         private void delReminder_Click(object sender, EventArgs e)
         {
-            string lstIn;
-            try
-            {
-                int intselectedindex = lstVxmlin.SelectedIndices[0];
-
-                if (intselectedindex >= 0)
-                {
-                    lstIn = lstVxmlin.SelectedItems[0].ToString();
-                    lstToTxt = lstVxmlin.Items[intselectedindex].Text;
-                }
-
-                XDocument xdoc = XDocument.Load("Resources\\SavedReminders.xml");
-                xdoc.Descendants("Reminder")
-                .Where(x => (string)x.Element("PlantName") == lstToTxt)
-                .Remove();
-                xdoc.Save("Resources\\SavedReminders.xml");
-                xmlRefeshlst();
-            }
-            catch (ArgumentOutOfRangeException outOfRange) {
-                MessageBox.Show("Select the plant name from the reminders list below.", "Green Fingers", MessageBoxButtons.OK, MessageBoxIcon.Information);
-               outOfRange = null;
-            }
+            SQLToXMLDataOutputClass.DelXML(this);
         }
 
         private void btnClrXml_Click(object sender, EventArgs e)
         {
-            makeNewXmlFile();
+            SQLToXMLDataOutputClass.makeNewXmlFile(this);
         }
-
-        private void makeNewXmlFile()
-        {
-            System.IO.File.WriteAllText("Resources\\SavedReminders.xml", string.Empty);
-            string xml = (@"<?xml version='1.0' encoding='utf-8'?>
-<Reminders>
-</Reminders>");
-            System.IO.File.WriteAllText(@"Resources\SavedReminders.xml", xml);
-            xmlRefeshlst();
-        }
-
 
         private void LstbLoadInSQL_MouseHover(object sender, EventArgs e)
         {
