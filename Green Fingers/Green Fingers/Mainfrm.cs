@@ -23,6 +23,10 @@ namespace Green_Fingers
         public String Get_SQL_List_Var;
         public String lstToTxt;
         public Icon ico;
+        //minamize button--start--
+        private delegate void EventHandler(object sender, EventArgs e);
+        private event EventHandler MinButtonClick;
+        //--end--
         #endregion
 
         public Mainfrm()
@@ -34,6 +38,9 @@ namespace Green_Fingers
                 lsr.chkRegSysT();
                 chkfiles();
                 InitializeComponent();
+                //Load rounded boreder----START-----
+                Region = System.Drawing.Region.FromHrgn(ThemeGUIClass.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+                //-----END-----
             }
             catch (SystemException)
             {
@@ -154,5 +161,86 @@ namespace Green_Fingers
             ShowInTaskbar = true;
             Opacity = 100;
         }
+        #region Form GUI Code
+        private void frmWindowBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ThemeGUIClass.ReleaseCapture();
+            ThemeGUIClass.SendMessage(this.Handle, ThemeGUIClass.WM_NCLBUTTONDOWN, ThemeGUIClass.HT_CAPTION, 0);
+        }
+
+        private void Mainfrm_MouseDown(object sender, MouseEventArgs e)
+        {
+            ThemeGUIClass.ReleaseCapture();
+            ThemeGUIClass.SendMessage(this.Handle, ThemeGUIClass.WM_NCLBUTTONDOWN, ThemeGUIClass.HT_CAPTION, 0);
+        }
+
+        private void tabPage2_MouseDown(object sender, MouseEventArgs e)
+        {
+            ThemeGUIClass.ReleaseCapture();
+            ThemeGUIClass.SendMessage(this.Handle, ThemeGUIClass.WM_NCLBUTTONDOWN, ThemeGUIClass.HT_CAPTION, 0);
+        }
+
+        private void tabOviewPage_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            ThemeGUIClass.ReleaseCapture();
+            ThemeGUIClass.SendMessage(this.Handle, ThemeGUIClass.WM_NCLBUTTONDOWN, ThemeGUIClass.HT_CAPTION, 0);
+        }
+
+        private void lblDatabaseInfo2_MouseDown(object sender, MouseEventArgs e)
+        {
+            ThemeGUIClass.ReleaseCapture();
+            ThemeGUIClass.SendMessage(this.Handle, ThemeGUIClass.WM_NCLBUTTONDOWN, ThemeGUIClass.HT_CAPTION, 0);
+        }
+
+        private void lblDatabaseInfo1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ThemeGUIClass.ReleaseCapture();
+            ThemeGUIClass.SendMessage(this.Handle, ThemeGUIClass.WM_NCLBUTTONDOWN, ThemeGUIClass.HT_CAPTION, 0);
+        }
+
+        private void FrmExitBtnlbl_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void FrmExitBtnlbl_MouseHover(object sender, EventArgs e)
+        {
+            FrmExitBtnlbl.ForeColor = Color.Red;
+        }
+
+        private void FrmExitBtnlbl_MouseLeave(object sender, EventArgs e)
+        {
+            FrmExitBtnlbl.ForeColor = Color.Black;
+        }
+
+        private void FrmMinimizeBtnlbl_Click(object sender, EventArgs e)
+        {
+            if (MinButtonClick != null)
+                MinButtonClick.Invoke(this, e);
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void FrmMinimizeBtnlbl_MouseHover(object sender, EventArgs e)
+        {
+            FrmMinimizeBtnlbl.ForeColor = Color.Blue;
+        }
+
+        private void FrmMinimizeBtnlbl_MouseLeave(object sender, EventArgs e)
+        {
+            FrmMinimizeBtnlbl.ForeColor = Color.Black;
+        }
+
+        private void IconFrmTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ThemeGUIClass.ReleaseCapture();
+            ThemeGUIClass.SendMessage(this.Handle, ThemeGUIClass.WM_NCLBUTTONDOWN, ThemeGUIClass.HT_CAPTION, 0);
+        }
+        
+        private void frmWindowTitleText_MouseDown(object sender, MouseEventArgs e)
+        {
+            ThemeGUIClass.ReleaseCapture();
+            ThemeGUIClass.SendMessage(this.Handle, ThemeGUIClass.WM_NCLBUTTONDOWN, ThemeGUIClass.HT_CAPTION, 0);
+        }
+        #endregion
     }
 }

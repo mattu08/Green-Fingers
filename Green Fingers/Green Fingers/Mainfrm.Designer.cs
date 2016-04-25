@@ -102,6 +102,7 @@
             this.harvest_TimeTextBox = new System.Windows.Forms.TextBox();
             this.notesTextBox = new System.Windows.Forms.TextBox();
             this.plot_Number_NameTextBox = new System.Windows.Forms.TextBox();
+            this.frmWindowTitleText = new System.Windows.Forms.Label();
             this.greenFingersTableAdapter = new Green_Fingers.GreenFingersDBDataSetTableAdapters.GreenFingersTableAdapter();
             this.tableAdapterManager = new Green_Fingers.GreenFingersDBDataSetTableAdapters.TableAdapterManager();
             this.nfyIGf = new System.Windows.Forms.NotifyIcon(this.components);
@@ -112,6 +113,10 @@
             this.tTipPlantsInDataBase = new System.Windows.Forms.ToolTip(this.components);
             this.tTipActivateReminders = new System.Windows.Forms.ToolTip(this.components);
             this.nfyIGfDPC = new System.Windows.Forms.NotifyIcon(this.components);
+            this.FrmWindowBar = new System.Windows.Forms.Panel();
+            this.IconFrmTitleBar = new System.Windows.Forms.PictureBox();
+            this.FrmMinimizeBtnlbl = new System.Windows.Forms.Label();
+            this.FrmExitBtnlbl = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
             plant_NameLabel = new System.Windows.Forms.Label();
             sow_IndoorsLabel = new System.Windows.Forms.Label();
@@ -134,6 +139,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.greenFingersBindingNavigator)).BeginInit();
             this.greenFingersBindingNavigator.SuspendLayout();
             this.CtxmenNfyIGF.SuspendLayout();
+            this.FrmWindowBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IconFrmTitleBar)).BeginInit();
             this.SuspendLayout();
             // 
             // iDLabel
@@ -219,13 +226,16 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.menuStrip1.AutoSize = false;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.AboutMnu});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 26);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(846, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(846, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -236,7 +246,7 @@
             this.exitToolStripMenuItem1,
             this.ExitMnu});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 24);
             this.toolStripMenuItem1.Text = "File";
             // 
             // SaveMnu
@@ -266,7 +276,7 @@
             // 
             this.AboutMnu.Image = global::Green_Fingers.Properties.Resources.about;
             this.AboutMnu.Name = "AboutMnu";
-            this.AboutMnu.Size = new System.Drawing.Size(68, 20);
+            this.AboutMnu.Size = new System.Drawing.Size(68, 24);
             this.AboutMnu.Text = "About";
             this.AboutMnu.Click += new System.EventHandler(this.AboutMnu_Click);
             // 
@@ -276,7 +286,7 @@
             this.tabOview.Controls.Add(this.tabOviewPage);
             this.tabOview.Controls.Add(this.tabPage2);
             this.tabOview.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tabOview.Location = new System.Drawing.Point(0, 27);
+            this.tabOview.Location = new System.Drawing.Point(0, 55);
             this.tabOview.Name = "tabOview";
             this.tabOview.SelectedIndex = 0;
             this.tabOview.Size = new System.Drawing.Size(846, 473);
@@ -306,6 +316,7 @@
             this.tabOviewPage.Size = new System.Drawing.Size(838, 444);
             this.tabOviewPage.TabIndex = 0;
             this.tabOviewPage.Text = "Overview";
+            this.tabOviewPage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabOviewPage_MouseDown_1);
             // 
             // btnHideInSysTray
             // 
@@ -542,6 +553,7 @@
             this.tabPage2.Size = new System.Drawing.Size(838, 444);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Database";
+            this.tabPage2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabPage2_MouseDown);
             // 
             // lblDatabaseInfo2
             // 
@@ -551,6 +563,7 @@
             this.lblDatabaseInfo2.Size = new System.Drawing.Size(150, 13);
             this.lblDatabaseInfo2.TabIndex = 22;
             this.lblDatabaseInfo2.Text = "Enter in the plant Data below. ";
+            this.lblDatabaseInfo2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblDatabaseInfo2_MouseDown);
             // 
             // lblDatabaseInfo1
             // 
@@ -560,6 +573,7 @@
             this.lblDatabaseInfo1.Size = new System.Drawing.Size(306, 13);
             this.lblDatabaseInfo1.TabIndex = 21;
             this.lblDatabaseInfo1.Text = "The date format must be as follows: DD/MM or DD/MM/YYYY.";
+            this.lblDatabaseInfo1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblDatabaseInfo1_MouseDown);
             // 
             // label1
             // 
@@ -858,6 +872,17 @@
             this.plot_Number_NameTextBox.Size = new System.Drawing.Size(100, 20);
             this.plot_Number_NameTextBox.TabIndex = 17;
             // 
+            // frmWindowTitleText
+            // 
+            this.frmWindowTitleText.AutoSize = true;
+            this.frmWindowTitleText.Font = new System.Drawing.Font("Lucida Fax", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.frmWindowTitleText.Location = new System.Drawing.Point(33, 10);
+            this.frmWindowTitleText.Name = "frmWindowTitleText";
+            this.frmWindowTitleText.Size = new System.Drawing.Size(123, 15);
+            this.frmWindowTitleText.TabIndex = 17;
+            this.frmWindowTitleText.Text = "Green Fingers V1.5";
+            this.frmWindowTitleText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmWindowTitleText_MouseDown);
+            // 
             // greenFingersTableAdapter
             // 
             this.greenFingersTableAdapter.ClearBeforeFill = true;
@@ -923,15 +948,67 @@
             this.nfyIGfDPC.Icon = ((System.Drawing.Icon)(resources.GetObject("nfyIGfDPC.Icon")));
             this.nfyIGfDPC.Text = "Green Fingers Alert";
             // 
+            // FrmWindowBar
+            // 
+            this.FrmWindowBar.BackColor = System.Drawing.Color.PaleGreen;
+            this.FrmWindowBar.Controls.Add(this.frmWindowTitleText);
+            this.FrmWindowBar.Controls.Add(this.IconFrmTitleBar);
+            this.FrmWindowBar.Controls.Add(this.FrmMinimizeBtnlbl);
+            this.FrmWindowBar.Controls.Add(this.FrmExitBtnlbl);
+            this.FrmWindowBar.Location = new System.Drawing.Point(0, -3);
+            this.FrmWindowBar.Name = "FrmWindowBar";
+            this.FrmWindowBar.Size = new System.Drawing.Size(846, 30);
+            this.FrmWindowBar.TabIndex = 3;
+            this.FrmWindowBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmWindowBar_MouseDown);
+            // 
+            // IconFrmTitleBar
+            // 
+            this.IconFrmTitleBar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.IconFrmTitleBar.Image = global::Green_Fingers.Properties.Resources.leaf;
+            this.IconFrmTitleBar.Location = new System.Drawing.Point(-4, 2);
+            this.IconFrmTitleBar.Name = "IconFrmTitleBar";
+            this.IconFrmTitleBar.Size = new System.Drawing.Size(31, 32);
+            this.IconFrmTitleBar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.IconFrmTitleBar.TabIndex = 17;
+            this.IconFrmTitleBar.TabStop = false;
+            this.IconFrmTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.IconFrmTitleBar_MouseDown);
+            // 
+            // FrmMinimizeBtnlbl
+            // 
+            this.FrmMinimizeBtnlbl.AutoSize = true;
+            this.FrmMinimizeBtnlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FrmMinimizeBtnlbl.Location = new System.Drawing.Point(785, 3);
+            this.FrmMinimizeBtnlbl.Name = "FrmMinimizeBtnlbl";
+            this.FrmMinimizeBtnlbl.Size = new System.Drawing.Size(27, 20);
+            this.FrmMinimizeBtnlbl.TabIndex = 17;
+            this.FrmMinimizeBtnlbl.Text = "__";
+            this.FrmMinimizeBtnlbl.Click += new System.EventHandler(this.FrmMinimizeBtnlbl_Click);
+            this.FrmMinimizeBtnlbl.MouseLeave += new System.EventHandler(this.FrmMinimizeBtnlbl_MouseLeave);
+            this.FrmMinimizeBtnlbl.MouseHover += new System.EventHandler(this.FrmMinimizeBtnlbl_MouseHover);
+            // 
+            // FrmExitBtnlbl
+            // 
+            this.FrmExitBtnlbl.AutoSize = true;
+            this.FrmExitBtnlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FrmExitBtnlbl.Location = new System.Drawing.Point(819, 7);
+            this.FrmExitBtnlbl.Name = "FrmExitBtnlbl";
+            this.FrmExitBtnlbl.Size = new System.Drawing.Size(18, 18);
+            this.FrmExitBtnlbl.TabIndex = 17;
+            this.FrmExitBtnlbl.Text = "X";
+            this.FrmExitBtnlbl.Click += new System.EventHandler(this.FrmExitBtnlbl_Click);
+            this.FrmExitBtnlbl.MouseLeave += new System.EventHandler(this.FrmExitBtnlbl_MouseLeave);
+            this.FrmExitBtnlbl.MouseHover += new System.EventHandler(this.FrmExitBtnlbl_MouseHover);
+            // 
             // Mainfrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(846, 502);
-            this.Controls.Add(this.tabOview);
+            this.ClientSize = new System.Drawing.Size(845, 529);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Controls.Add(this.FrmWindowBar);
+            this.Controls.Add(this.tabOview);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
@@ -939,6 +1016,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Green Fingers V1.0";
             this.Load += new System.EventHandler(this.Mainfrm_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Mainfrm_MouseDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabOview.ResumeLayout(false);
@@ -956,8 +1034,10 @@
             this.greenFingersBindingNavigator.ResumeLayout(false);
             this.greenFingersBindingNavigator.PerformLayout();
             this.CtxmenNfyIGF.ResumeLayout(false);
+            this.FrmWindowBar.ResumeLayout(false);
+            this.FrmWindowBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IconFrmTitleBar)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1041,6 +1121,11 @@
         public System.Windows.Forms.Button btnDeactivate;
         public System.Windows.Forms.ListBox LstbLoadInSQL;
         public System.Windows.Forms.ListView lstVxmlin;
+        private System.Windows.Forms.Panel FrmWindowBar;
+        private System.Windows.Forms.Label FrmExitBtnlbl;
+        private System.Windows.Forms.Label FrmMinimizeBtnlbl;
+        private System.Windows.Forms.PictureBox IconFrmTitleBar;
+        private System.Windows.Forms.Label frmWindowTitleText;
     }
 }
 

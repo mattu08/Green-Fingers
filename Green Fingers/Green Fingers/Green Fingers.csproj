@@ -98,6 +98,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLDataBaseConnectAndCollectClass.cs" />
     <Compile Include="SQLToXMLDataOutputClass.cs" />
+    <Compile Include="ThemeGUIClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="aboutfrm.resx">
       <DependentUpon>aboutfrm.cs</DependentUpon>
     </EmbeddedResource>
