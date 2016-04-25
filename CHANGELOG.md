@@ -1,5 +1,12 @@
 # Change Log
 
+## [V1.5-Final-Juniper-Berry](https://github.com/mattu08/Green-Fingers/tree/V1.5-Final-Juniper-Berry) (2016-04-25)
+[Full Changelog](https://github.com/mattu08/Green-Fingers/compare/V1.4-Final-Gooseberry...V1.5-Final-Juniper-Berry)
+
+**Release Details:**
+
+• Implemented A New Form GUI Theme.
+
 ## [V1.4-Final-Gooseberry](https://github.com/mattu08/Green-Fingers/tree/V1.4-Final-Gooseberry) (2016-04-24)
 [Full Changelog](https://github.com/mattu08/Green-Fingers/compare/V1.3-Final-Turnip...V1.4-Final-Gooseberry)
 
